@@ -6,3 +6,71 @@
   /* --font-buttons: 'Oswald', sans-serif; */
 }
 
+
+
+
+#main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  font-size: 3rem;
+}
+
+#calculator {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: .5rem;
+  padding-bottom: .5rem;
+}
+
+#display {
+  width: 90%;
+  text-align: center;
+  font-size: 3rem;
+  border: 1px solid black;
+  border-radius: .3rem;
+}
+
+#buttons {
+  width: 100%;
+  display: flex;
+}
+
+.btn {
+  font-size: 2.5rem;
+}
+
+#digits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.digit {
+  cursor: pointer;
+  flex: 0 0 30%;
+}
+
+#operations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.operation {
+  cursor: pointer;
+  flex: 0 0 45%;
+}
+
+.operation-wide {
+  cursor: pointer;
+  flex: 0 0 93%;
+}
