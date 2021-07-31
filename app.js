@@ -30,43 +30,64 @@ function pressOperation(e) {
 
     switch (e.target.id) {
       case 'clear':
+        mathOperator = '';
         displayUI.textContent = '';
         break;
       case 'add':
-        if (mathOperator === '') {
-          storeItems(displayUI.textContent, e.target.value)
-          displayUI.textContent += '+';
-        } else {
-          storeSecondNum (displayUI.textContent)
-          result = operate(mathOperator, firstNum, secondNum);
-          displayUI.textContent = result;
-          storeItems(result, e.target.value)
-          displayUI.textContent += '+';
-        }
+        process();
         break;
-      case '-':
-        displayUI.textContent += '-';
+      case 'subtract':
+        process();
         break;
-      case '*':
-        displayUI.textContent += '*';
+      case 'multiply':
+        process();
         break;
-      case '/':
-        displayUI.textContent += '/';
+      case 'divide':
+        process();
         break;
-        default:
-          displayUI.textContent += 'ERROR';
+      case 'equals':
+        process();
         break;
+      default:
+        displayUI.textContent = 'ERROR';
+        break;
+    }
+  }
+
+  // Functions that evaluates if there is an active math operation and runs functions accordingly
+  function process() {
+
+    if (mathOperator === '') {
+      storeItems(displayUI.textContent, e.target.value)
+    } else if (!displayUI.textContent[displayUI.textContent.length - 1].match(/\w/)) {
+      replaceMathOperator(e.target.value)
+    } else {
+      storeSecondNum(displayUI.textContent)
+      result = operate(mathOperator, firstNum, secondNum);
+      displayUI.textContent = result;
+      storeItems(result, e.target.value)
     }
   }
 }
 
 
-// Variable storing
+// Variable storing and display editing
 
 // Function that stores first number and operator
 function storeItems(number, operator) {
   firstNum = parseInt(number);
-  mathOperator = operator;
+  if (operator === '=') {
+    mathOperator = '';
+  } else {
+    mathOperator = operator;
+    displayUI.textContent += operator;
+  }
+}
+
+function replaceMathOperator(newOperator) {
+  let text = displayUI.textContent.replace(mathOperator, newOperator);
+  displayUI.textContent = text;
+  mathOperator = newOperator;
 }
 
 function storeSecondNum (displayValue) {
