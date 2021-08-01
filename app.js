@@ -5,7 +5,7 @@ const digitsUI = document.querySelector('#digits');
 const operationsUI = document.querySelector('#operations');
 
 
-// App elements
+// App variables
 
 let firstNum, secondNum, result;
 let mathOperator = '';
@@ -54,7 +54,7 @@ function pressOperation(e) {
     }
   }
 
-  // Functions that evaluates if there is an active math operation and runs functions accordingly
+  // Function that evaluates if there is an active math operation and runs functions accordingly
   function process() {
 
     if (mathOperator === '') {
@@ -63,9 +63,13 @@ function pressOperation(e) {
       replaceMathOperator(e.target.value)
     } else {
       storeSecondNum(displayUI.textContent)
-      result = operate(mathOperator, firstNum, secondNum);
-      displayUI.textContent = result;
-      storeItems(result, e.target.value)
+      if (mathOperator === '/' && parseInt(secondNum) == 0) {
+        displayUI.textContent = 'ERROR -> /0';
+      } else {
+        result = operate(mathOperator, firstNum, secondNum);
+        displayUI.textContent = result;
+        storeItems(result, e.target.value)
+      }
     }
   }
 }
