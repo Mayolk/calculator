@@ -20,15 +20,29 @@ operationsUI.addEventListener('mouseup', pressOperation);
 // Event handlers
 
 function pressDigit(e) {
-  if (e.target !== digitsUI) {
-    if (displayUI.textContent === '') {
-      firstNum = undefined;
+
+  if (mathOperator === '') {
+      if (displayUI.textContent.length < 8) {
+        addToDisplay()
+      }
+  } else {
+    if (displayUI.textContent.length < 17) {
+      addToDisplay()
     }
-    displayUI.textContent += e.target.value;
+  }
+
+  function addToDisplay() {
+    if (e.target !== digitsUI) {
+      if (displayUI.textContent === '') {
+        firstNum = undefined;
+      }
+      displayUI.textContent += e.target.value;
+    }
   }
 }
 
 function pressOperation(e) {
+  
   if (e.target !== operationsUI) {
 
     switch (e.target.id) {
@@ -77,9 +91,12 @@ function pressOperation(e) {
         if (Math.floor(result * 100000) === result * 100000) {
           displayUI.textContent = result
         } else {
-          displayUI.textContent = result.toFixed(5);
+          if (result < 1000000) {
+            displayUI.textContent = result.toFixed(3);
+          } else {
+            displayUI.textContent = result.toFixed(1);
+          }
         }
-        // sve zaokružuje na 5 decimala
         storeItems(result, e.target.value)
       }
     }
@@ -101,9 +118,11 @@ function storeItems(number, operator) {
 }
 
 function replaceMathOperator(newOperator) {
-  let text = displayUI.textContent.replace(mathOperator, newOperator);
-  displayUI.textContent = text;
-  mathOperator = newOperator;
+  if (newOperator !== '=') {
+    let text = displayUI.textContent.replace(mathOperator, newOperator);
+    displayUI.textContent = text;
+    mathOperator = newOperator;
+  }
 }
 
 function storeSecondNum (displayValue) {

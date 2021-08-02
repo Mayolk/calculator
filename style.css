@@ -1,13 +1,14 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&family=Oswald:wght@400;600&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&family=Oswald:wght@400;600&display=swap');
 
 :root {
 
-  /* --font-display: 'Libre Franklin', sans-serif; */
-  /* --font-buttons: 'Oswald', sans-serif; */
+  --font-display: 'Libre Franklin', sans-serif;
+  --font-buttons: 'Oswald', sans-serif;
 }
 
-
-
+body {
+  font-family: var(--font-display);
+}
 
 #main {
   display: flex;
@@ -30,21 +31,25 @@
 }
 
 #display {
+  font-weight: 700;
+  padding-top: .8rem;
   width: 90%;
   height: 56px;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.25rem;
   border: 1px solid black;
   border-radius: .3rem;
 }
 
 #buttons {
-  width: 100%;
+  width: 90%;
   display: flex;
+  margin-bottom: 1rem;
 }
 
 .btn {
-  font-size: 2.5rem;
+  font-family: var(--font-buttons);
+  font-size: 2.25rem;
 }
 
 #digits {
